@@ -1,0 +1,16 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+
+# data and outputs stay local
+data/*
+!data/.gitkeep
+submissions/*
+!submissions/.gitkeep
+*.pkl
+*.joblib
