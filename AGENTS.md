@@ -28,6 +28,15 @@ Keep it short and current. It's the brief every agent works from.
 - `uv run pytest`: tests
 - `uv run ruff check --fix . && uv run ruff format .`: lint and format
 
+## Model routing (Claude Code only)
+The main session runs on the strongest model and does the thinking: reading the
+brief, choosing strategy, designing features, debugging, deciding what to try next.
+Delegate self-contained work to cheaper subagents (`.claude/agents/`):
+- `quick` (Haiku): run tests/lint/scripts, inspect data, summarise files, git, tiny edits.
+- `worker` (Sonnet): implement a change whose approach is already decided.
+Subagents start without this conversation's context, so give them a complete,
+specific task. Anything needing judgement or a 1-line fix: just do it here.
+
 ## Rules
 - Every model is scored with `run_cv` on `make_splits`. Don't hand-roll validation.
   If CV improves but the leaderboard doesn't, suspect leakage first.
