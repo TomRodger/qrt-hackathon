@@ -3,6 +3,20 @@
 Read by both Codex (AGENTS.md) and Claude Code (CLAUDE.md is a symlink to this file).
 Keep it short and current. It's the brief every agent works from.
 
+## Format
+4 auto-graded problems (+ bonus at 70%+ overall), 2 hours. Each problem lives in
+`problems/pN/`: `solution.py` (a `solve(input_str) -> output_str`) and
+`test_solution.py` (examples from the statement). Workflow per problem:
+1. Paste the statement into the solution docstring. Restate the exact input and
+   output format and constraints before coding.
+2. Solve, add the given examples to EXAMPLES, run `uv run pytest problems/pN`.
+3. Check edge cases (empty, single item, ties, max size) and time complexity
+   against the constraints.
+4. If hidden tests fail: write a brute-force `brute.py` and stress-test against
+   it on small random inputs.
+Speed matters: get a correct simple solution submitted first, optimise after.
+If a problem is a prediction/data task, use the `src/qrt/` pipeline below.
+
 ## Problem
 <!-- Fill in when the brief drops -->
 - Task:
